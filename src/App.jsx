@@ -1,15 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import Products from './components/Products'
+import { useState } from "react";
+import "./App.css";
+import Products from "./components/product/Products";
+import HeaderSection from "./components/header/HeaderSection";
+import Cart from "./components/Cart/Cart";
 function App() {
-  const [count, setCount] = useState(0)
+  const [cartState, setCartState] = useState(false);
+
+  const cartOpenHandler = () => {
+    setCartState(true);
+  };
+  const cartCloseHandler = () => {
+    setCartState(false);
+  };
 
   return (
     <>
-      <Products/>
-        
+      <HeaderSection onOpenCart={cartOpenHandler} />
+      <Products />
+      {cartState && <Cart close={cartCloseHandler} />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

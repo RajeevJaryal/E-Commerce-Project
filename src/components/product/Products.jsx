@@ -1,3 +1,4 @@
+import Cart from "../Cart/Cart";
 const productsArr = [
   {
     title: "Colors",
