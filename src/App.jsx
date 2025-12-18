@@ -4,6 +4,8 @@ import Products from "./components/product/Products";
 import HeaderSection from "./components/header/HeaderSection";
 import Cart from "./components/Cart/Cart";
 import LogoText from "./components/header/logoText";
+import { Routes, Route } from "react-router-dom";
+import About from "./components/about/About";
 function App() {
   const [cartState, setCartState] = useState(false);
   const [cartData, setCartData] = useState([]);
@@ -14,6 +16,9 @@ function App() {
   const cartCloseHandler = () => {
     setCartState(false);
   };
+  const purchaseHandler=()=>{
+    setCartData([]);
+  }
 
   const addToCartHandler = (product) => {
     setCartData((prevItem) => {
@@ -37,8 +42,12 @@ function App() {
     <>
       <HeaderSection totalItems={totalItems} onOpenCart={cartOpenHandler} />
       <LogoText />
-      <Products onAddToCart={addToCartHandler}/>
-      {cartState && <Cart cartData={cartData} close={cartCloseHandler} />}
+      <Routes>
+        <Route path="/store" element={<Products onAddToCart={addToCartHandler}/>} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+      
+      {cartState && <Cart cartData={cartData} purchase={purchaseHandler} close={cartCloseHandler} />}
     </>
   );
 }

@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const HeaderSection = ({ onOpenCart, totalItems }) => {
   return (
     <div
@@ -7,8 +9,20 @@ const HeaderSection = ({ onOpenCart, totalItems }) => {
       <div className="container d-flex align-items-center justify-content-between h-100">
         <div className="d-flex justify-content-center flex-grow-1 gap-4">
           <h5 className="mb-0">Home</h5>
-          <h5 className="mb-0">Store</h5>
-          <h5 className="mb-0">About</h5>
+
+          <NavLink
+            to="/store"
+             
+            className={({ isActive }) => `text-white text-decoration-none ${isActive ? "active-link" : ""}`}
+          >
+            <h5>Store</h5>
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => `text-white text-decoration-none ${isActive ? "active-link" : ""}`}
+          >
+            <h5>About</h5>
+          </NavLink>
         </div>
 
         <button className="btn btn-primary" onClick={onOpenCart}>

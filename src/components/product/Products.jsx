@@ -38,7 +38,7 @@ const Products = ({onAddToCart}) => {
   return (
     <>
       <div className="container">
-        <h3 className="text-center">Music</h3>
+        <h2 className="text-center mt-3 mb-3 fw-bold">Music</h2>
         <div className="row">
           {productsArr.map((product, index) => (
             
