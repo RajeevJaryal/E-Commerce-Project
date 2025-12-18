@@ -1,4 +1,4 @@
-import Cart from "../Cart/Cart";
+import ProductCart from "./ProductCart";
 const productsArr = [
   {
     title: "Colors",
@@ -33,19 +33,28 @@ const productsArr = [
   },
 ];
 
-const Products=()=>{
-    return(
-        <>
-        <div>
-            {productsArr.map((product,index)=>{
-                return <div key={index}>
-                    <img src={product.imageUrl} alt={product.title}/>
-                    <h3>{product.title}</h3>
-                    <p>Price: ₹{product.price}</p>
-                </div>
-            })}
+const Products = ({onAddToCart}) => {
+  
+  return (
+    <>
+      <div className="container">
+        <h3 className="text-center">Music</h3>
+        <div className="row">
+          {productsArr.map((product, index) => (
+            
+            <div key={index} className="col-6 text-center mb-4 d-flex justify-content-center">
+              <ProductCart
+              imgSrc={product.imageUrl}
+              title={product.title}
+              price={product.price}
+              onAddToCart={()=>onAddToCart(product)}
+            />
+            </div>
+          ))}
         </div>
-        </>
-    )
-}
+      </div>
+    </>
+  );
+};
+
 export default Products;
