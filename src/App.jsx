@@ -4,8 +4,9 @@ import Products from "./components/product/Products";
 import HeaderSection from "./components/header/HeaderSection";
 import Cart from "./components/Cart/Cart";
 import LogoText from "./components/header/logoText";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import About from "./components/about/About";
+import Home from "./components/home/Home";
 function App() {
   const [cartState, setCartState] = useState(false);
   const [cartData, setCartData] = useState([]);
@@ -43,8 +44,10 @@ function App() {
       <HeaderSection totalItems={totalItems} onOpenCart={cartOpenHandler} />
       <LogoText />
       <Routes>
+        <Route path="/" element={<Navigate to="/store" />} />
         <Route path="/store" element={<Products onAddToCart={addToCartHandler}/>} />
         <Route path="/about" element={<About />} />
+        <Route path="/home" element={<Home/>}/>
       </Routes>
       
       {cartState && <Cart cartData={cartData} purchase={purchaseHandler} close={cartCloseHandler} />}
