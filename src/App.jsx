@@ -17,9 +17,9 @@ function App() {
   const cartCloseHandler = () => {
     setCartState(false);
   };
-  const purchaseHandler=()=>{
+  const purchaseHandler = () => {
     setCartData([]);
-  }
+  };
 
   const addToCartHandler = (product) => {
     setCartData((prevItem) => {
@@ -35,9 +35,29 @@ function App() {
       return [...prevItem, { ...product, quantity: 1 }];
     });
   };
-  const totalItems=cartData.reduce((sum,item)=>{
-    return sum+item.quantity
-  },0);
+  const removeFromCartHandler = (product) => {
+    setCartData((prevItems) => {
+      const existingItem = prevItems.find(
+        (item) => item.title === product.title
+      );
+
+      if (!existingItem) return prevItems;
+
+      if (existingItem.quantity === 1) {
+        return prevItems.filter((item) => item.title !== product.title);
+      }
+
+      return prevItems.map((item) =>
+        item.title === product.title
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
+    });
+  };
+
+  const totalItems = cartData.reduce((sum, item) => {
+    return sum + item.quantity;
+  }, 0);
 
   return (
     <>
@@ -45,12 +65,22 @@ function App() {
       <LogoText />
       <Routes>
         <Route path="/" element={<Navigate to="/store" />} />
-        <Route path="/store" element={<Products onAddToCart={addToCartHandler}/>} />
+        <Route
+          path="/store"
+          element={<Products onAddToCart={addToCartHandler} />}
+        />
         <Route path="/about" element={<About />} />
-        <Route path="/home" element={<Home/>}/>
+        <Route path="/home" element={<Home />} />
       </Routes>
-      
-      {cartState && <Cart cartData={cartData} purchase={purchaseHandler} close={cartCloseHandler} />}
+
+      {cartState && (
+        <Cart
+          cartData={cartData}
+          purchase={purchaseHandler}
+          remove={removeFromCartHandler}
+          close={cartCloseHandler}
+        />
+      )}
     </>
   );
 }

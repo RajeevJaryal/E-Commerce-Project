@@ -1,4 +1,4 @@
-const Cart = ({ cartData, close, purchase }) => {
+const Cart = ({ cartData, close, purchase,remove }) => {
   const totalAmount = cartData.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -73,7 +73,7 @@ const Cart = ({ cartData, close, purchase }) => {
               value={item.quantity}
               readOnly
             />
-            <button className="btn btn-danger btn-sm">REMOVE</button>
+            <button className="btn btn-danger btn-sm" onClick={()=>remove(item)}>REMOVE</button>
           </div>
         </div>
       ))}

@@ -1,6 +1,5 @@
 import PlaySvg from "./Playsvg";
 
-
 const tourDates = [
   { date: "JUL 16", city: "Detroit, MI", venue: "DTE Energy Music Theatre" },
   { date: "JUL 19", city: "Toronto, ON", venue: "Budweiser Stage" },
@@ -57,11 +56,10 @@ const Home = () => {
             </div>
           ))}
         </div>
-        
       </div>
       <footer className="bg-info p-4  p-5 ">
-            <h2 className="fw-bold">The Generics</h2>
-        </footer>
+        <h2 className="fw-bold">The Generics</h2>
+      </footer>
     </>
   );
 };
