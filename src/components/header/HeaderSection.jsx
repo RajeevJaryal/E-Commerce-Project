@@ -33,6 +33,15 @@ const HeaderSection = ({ onOpenCart, totalItems }) => {
           >
             <h5>About</h5>
           </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `text-white text-decoration-none ${isActive ? "active-link" : ""}`
+            }
+          >
+            <h5>Contact Us</h5>
+          </NavLink>
+
         </div>
 
         <button className="btn btn-primary" onClick={onOpenCart}>

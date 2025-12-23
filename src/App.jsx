@@ -7,6 +7,7 @@ import LogoText from "./components/header/logoText";
 import { Routes, Route, Navigate } from "react-router-dom";
 import About from "./components/about/About";
 import Home from "./components/home/Home";
+import ContactUs from "./components/Contact/ContactUs";
 function App() {
   const [cartState, setCartState] = useState(false);
   const [cartData, setCartData] = useState([]);
@@ -71,6 +72,7 @@ function App() {
         />
         <Route path="/about" element={<About />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/contact" element={<ContactUs/>}/>
       </Routes>
 
       {cartState && (
