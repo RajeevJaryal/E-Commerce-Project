@@ -10,8 +10,6 @@ const ProductDetails = () => {
   return (
     <div className="container mt-4">
       <h2 className="fw-bold">{product.title}</h2>
-
-      {/* Images */}
       <img
         src={product.images}
         alt={product.title}
@@ -19,10 +17,8 @@ const ProductDetails = () => {
         className="mb-3"
       />
 
-      {/* Price */}
       <h4>Price: ₹{product.price}</h4>
 
-      {/* Reviews */}
       <h5 className="mt-3">Reviews</h5>
       <ul>
         <li>⭐ Excellent sound quality</li>

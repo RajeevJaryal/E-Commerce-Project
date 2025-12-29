@@ -1,5 +1,4 @@
 import ProductCart from "./ProductCart";
-import { Link } from "react-router-dom";
 import products from "../data/products";
 
 const Products = ({ onAddToCart }) => {
@@ -16,7 +15,7 @@ const Products = ({ onAddToCart }) => {
             
               <ProductCart
               id={product.id}
-                imgSrc={product.images[0]}
+                imgSrc={product.images}
                 title={product.title}
                 price={product.price}
                 onAddToCart={() => onAddToCart(product)}

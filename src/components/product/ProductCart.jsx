@@ -6,7 +6,7 @@ const ProductCart = ({ imgSrc, title, price, onAddToCart, id }) => {
       className="card shadow-sm h-100"
       style={{ width: "18rem", borderRadius: "12px" }}
     >
-      {/* Image + Title Clickable */}
+    
       <Link
         to={`/product/${id}`}
         className="text-decoration-none text-dark"
@@ -34,7 +34,7 @@ const ProductCart = ({ imgSrc, title, price, onAddToCart, id }) => {
         </div>
       </Link>
 
-      {/* Button */}
+  
       <div className="px-3 pb-3 mt-auto">
         <button
           className="btn btn-outline-primary w-100"

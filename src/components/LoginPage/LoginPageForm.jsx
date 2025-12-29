@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from "react";
 import AuthContext from "../Store/AuthContext";
 
-const FIREBASE_API_KEY = "";
+const FIREBASE_API_KEY = "AIzaSyD_l7c84umFPHaOHg0RAHwrIG8Dphwuo_8";
 
 const LoginPageForm = () => {
   const emailInputRef = useRef();
@@ -45,7 +45,7 @@ const LoginPageForm = () => {
         throw new Error(data.error.message || "Authentication failed!");
       }
 
-      authCtx.login(data.idToken);
+      authCtx.login(data.idToken, enteredEmail);
     } catch (error) {
       alert(error.message);
     }
@@ -55,77 +55,71 @@ const LoginPageForm = () => {
 
   return (
     <section className="container mt-5">
-  <div className="row justify-content-center">
-    <div className="col-md-6 col-lg-5">
-      <div className="card shadow">
-        <div className="card-body">
-          
-          <h3 className="card-title text-center mb-4">
-            {isLogin ? "Login" : "Sign Up"}
-          </h3>
+      <div className="row justify-content-center">
+        <div className="col-md-6 col-lg-5">
+          <div className="card shadow">
+            <div className="card-body">
+              <h3 className="card-title text-center mb-4">
+                {isLogin ? "Login" : "Sign Up"}
+              </h3>
 
-          <form onSubmit={submitHandler}>
+              <form onSubmit={submitHandler}>
+                
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">
+                    Your Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="form-control"
+                    ref={emailInputRef}
+                    required
+                  />
+                </div>
 
-            {/* Email */}
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Your Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="form-control"
-                ref={emailInputRef}
-                required
-              />
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">
+                    Your Password
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    className="form-control"
+                    ref={passwordInputRef}
+                    required
+                  />
+                </div>
+
+                <div className="d-grid gap-2">
+                  {!isLoading && (
+                    <button type="submit" className="btn btn-primary">
+                      {isLogin ? "Login" : "Create Account"}
+                    </button>
+                  )}
+
+                  {isLoading && (
+                    <button className="btn btn-secondary" disabled>
+                      Loading...
+                    </button>
+                  )}
+
+                  <button
+                    type="button"
+                    className="btn btn-link text-decoration-none"
+                    onClick={switchAuthModeHandler}
+                  >
+                    {isLogin
+                      ? "Create new account"
+                      : "Login with existing account"}
+                  </button>
+                </div>
+              </form>
             </div>
-
-            {/* Password */}
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Your Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                className="form-control"
-                ref={passwordInputRef}
-                required
-              />
-            </div>
-
-            {/* Actions */}
-            <div className="d-grid gap-2">
-              {!isLoading && (
-                <button type="submit" className="btn btn-primary">
-                  {isLogin ? "Login" : "Create Account"}
-                </button>
-              )}
-
-              {isLoading && (
-                <button className="btn btn-secondary" disabled>
-                  Loading...
-                </button>
-              )}
-
-              <button
-                type="button"
-                className="btn btn-link text-decoration-none"
-                onClick={switchAuthModeHandler}
-              >
-                {isLogin
-                  ? "Create new account"
-                  : "Login with existing account"}
-              </button>
-            </div>
-
-          </form>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
+    </section>
   );
 };
 

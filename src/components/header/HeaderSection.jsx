@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import AuthContext from "../Store/AuthContext";
 import { useContext } from "react";
-import { Button } from "bootstrap";
 const HeaderSection = ({ onOpenCart, totalItems }) => {
   const authCtx = useContext(AuthContext);
   return (

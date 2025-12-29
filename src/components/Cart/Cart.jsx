@@ -1,18 +1,23 @@
-const Cart = ({ cartData, close, purchase,remove }) => {
+import React from "react";
+
+const Cart = ({ cartData, close, purchase, remove }) => {
   const totalAmount = cartData.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const purchaseHandler=()=>{
-    if(totalAmount===0){
-      return alert("You have Nothing in Cart , Add some products to purchase !");
+
+  const purchaseHandler = () => {
+    if (totalAmount === 0) {
+      alert("You have nothing in the cart. Add some products to purchase!");
+      return;
     }
-    return alert("Thanks for the purchase");
-  }
-  const handler=()=>{
+    alert("Thanks for the purchase");
+  };
+
+  const handler = () => {
     purchase();
     purchaseHandler();
-  }
+  };
 
   return (
     <div
@@ -25,7 +30,6 @@ const Cart = ({ cartData, close, purchase,remove }) => {
         zIndex: 1000,
       }}
     >
-
       <div className="text-end">
         <button className="btn btn-outline-dark" onClick={close}>
           X
@@ -40,10 +44,9 @@ const Cart = ({ cartData, close, purchase,remove }) => {
         <span style={{ width: "35%" }}>QUANTITY</span>
       </div>
 
-     
-      {cartData.map((item, index) => (
+      {cartData.map((item) => (
         <div
-          key={index}
+          key={item._id || item.title}
           className="d-flex align-items-center justify-content-between border-bottom py-3"
         >
           <div className="d-flex align-items-center" style={{ width: "45%" }}>
@@ -62,6 +65,7 @@ const Cart = ({ cartData, close, purchase,remove }) => {
           </div>
 
           <div style={{ width: "20%" }}>₹{item.price}</div>
+
           <div
             className="d-flex align-items-center gap-2"
             style={{ width: "35%" }}
@@ -73,16 +77,23 @@ const Cart = ({ cartData, close, purchase,remove }) => {
               value={item.quantity}
               readOnly
             />
-            <button className="btn btn-danger btn-sm" onClick={()=>remove(item)}>REMOVE</button>
+            <button
+              className="btn btn-danger btn-sm"
+              onClick={() => remove(item)}
+            >
+              REMOVE
+            </button>
           </div>
         </div>
       ))}
 
-      <h4 className="text-end mt-4 fw-bold">
-        Total ₹{totalAmount.toFixed(2)}
-      </h4>
+      <h4 className="text-end mt-4 fw-bold">Total ₹{totalAmount.toFixed(2)}</h4>
+
       <div className="text-center mt-4">
-        <button className="btn btn-info text-white px-5 py-2 fw-bold" onClick={handler}>
+        <button
+          className="btn btn-info text-white px-5 py-2 fw-bold"
+          onClick={handler}
+        >
           PURCHASE
         </button>
       </div>
